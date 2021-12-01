@@ -1,12 +1,17 @@
 <template>
-
   <div id="app" class="app">
-    <div class="header">
-      <img 
-      src="../src/assets/main_logo.svg" 
-      alt="Logotipo Soluciones Verdes"
-      />
-      <h1>Soluciones Verdes</h1>
+    <div id="header" class="header">
+      <div id="left-header" class="left-header">
+        <img src="../src/assets/main_logo.svg" />Soluciones Verdes
+      </div>
+      <div id="right-header" class="right-header">
+        <nav>
+          <button>Home</button>
+          <button>Servicios</button>
+          <button>Perfil</button>
+          <button>About</button>
+        </nav>
+      </div>
     </div>
   </div>
 </template> 
@@ -24,7 +29,6 @@ export default {
 </script> 
  
 <style>
-@import url('https://fonts.googleapis.com/css?family=Alice');
 body {
   margin: 0 0 0 0;
 }
@@ -35,21 +39,42 @@ body {
   width: 100%;
   height: 10vh;
   min-height: 50px;
-  background-color: #EDE6DC;
-  color: #e5e7e9;
+  background-color: #ede6dc;
+  color: #ede6dc;
   display: flex;
-  /* justify-content: space-between;*/
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header h1 {
-  text-align: center;
-  color: #3A3B28;
-  font-family: 'Alice', 'Times New Roman', Times, serif;
-  }
+.left-header {
+  height: 10vh;
+  width: 30%;
+  line-height: 70px;
+  font-family: "Alice", "Times New Roman", Times, serif;
+  color: #3a3b28;
+  font-size: 270%;
+}
 
-.header img {
+.left-header img {
   margin: 10px;
   height: 75%;
+  float: left;
+}
+
+.header nav button {
+  color: #3a3b28;
+  background: #ede6dc;
+  border: 1px solid #3a3b28;
+  font-family: "Raleway", "Arial", sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px 30px;
+  margin-right: 10px
+  }
+
+.header nav button:hover {
+  color: #ede6dc;
+  background: #3a3b28;
+  border: 1px solid #3a3b28;
 }
 </style>
