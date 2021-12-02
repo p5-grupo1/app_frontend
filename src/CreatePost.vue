@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "CreatePost",
 
   data: function () {},
 
