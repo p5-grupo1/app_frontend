@@ -6,7 +6,7 @@
       </div>
       <div id="right-header" class="right-header">
         <nav>
-          <button>Home</button>
+          <button v-on:click="loadHome">Home</button>
           <button>Servicios</button>
           <button>Perfil</button>
           <button>About</button>
@@ -22,7 +22,11 @@ export default {
 
   data: function () {},
 
-  methods: {},
+  methods: {
+    loadHome: function(){
+        this.$router.push({name: "home"});
+      },
+  },
 
   created: function () {},
 };
