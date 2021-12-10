@@ -7,12 +7,15 @@
       <div id="right-header" class="right-header">
         <nav>
           <button v-on:click="loadHome">Home</button>
-          <button>Servicios</button>
-          <button>Perfil</button>
-          <button>About</button>
+          <button v-on:click="loadServicios">Servicios</button>
+          <button v-on:click="loadPerfil">Perfil</button>
+          <button v-on:click="loadAbout">About</button>
         </nav>
       </div>
     </div>
+    <a v-on:click="loadEditPost">EditPost</a> 
+    
+      <router-view></router-view>
   </div>
 </template> 
  
@@ -20,12 +23,34 @@
 export default {
   name: "App",
 
-  data: function () {},
+  data: function () {
+    return {
+      renderComponent: true,
+    }
+  },
 
   methods: {
     loadHome: function(){
         this.$router.push({name: "home"});
       },
+
+    loadServicios: function(){
+      this.$router.push({name: "services"});
+    },
+
+    loadPerfil: function(){
+          this.$router.push({name: "perfil"});
+        },
+
+    loadAbout: function(){
+        this.$router.push({name: "about"});
+      },
+
+      loadEditPost: function(){
+        this.$router.push({name: "editPost"});
+      },
+
+
   },
 
   created: function () {},
@@ -52,7 +77,7 @@ body {
 
 .left-header {
   height: 10vh;
-  width: 30%;
+  width: 50%;
   line-height: 70px;
   font-family: "Alice", "Times New Roman", Times, serif;
   color: #3a3b28;

@@ -1,6 +1,6 @@
 <template>
   <div class="imagen">
-    <img src="../src/assets/undraw_environment_iaus_1.png" alt="" />
+    <img src="../assets/undraw_environment_iaus_1.png" alt="" />
   </div>
 
   <div class="login">

@@ -1,14 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import App                                    from "./App.vue";
-import Home                                   from "./Home.vue";
-import SignUp                                 from "./SignUp.vue";
-import LogIn                                  from "./LogIn.vue";
-import Services                               from "./Services.vue";
-import About                                  from "./About.vue";
-import ClientProfile                          from "./ClientProfile.vue";
-import GardenerProfile                        from "./GardenerProfile.vue";
-import CreatePost                             from "./CreatePost.vue";
-import EditPost                               from "./EditPost.vue";
+
+import Home                                   from "./components/Home.vue";
+import SignUp                                 from "./components/SignUp.vue";
+import LogIn                                  from "./components/LogIn.vue";
+import Services                               from "./components/Services.vue";
+import About                                  from "./components/About.vue";
+import ClientProfile                          from "./components/ClientProfile.vue";
+import GardenerProfile                        from "./components/GardenerProfile.vue";
+import CreatePost                             from "./components/CreatePost.vue";
+import EditPost                               from "./components/EditPost.vue";
 
 const routes = [
   {
@@ -70,6 +71,8 @@ const routes = [
     name: "editPost",
     component: EditPost,
   },
+
+
 ];
 
 const router = createRouter({

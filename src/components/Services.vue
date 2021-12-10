@@ -36,7 +36,7 @@
       <div class="col">
         <!--1 división de texto-->
         <div class="imagen">
-          <img src="../src/assets/jardineria.jpg" alt="" />
+          <img src="../assets/jardineria.jpg" alt="" />
         </div>
 
         <div class="text">
@@ -48,7 +48,7 @@
 
       <div class="col">
         <div class="imagen">
-          <img src="../src/assets/jardineria3.jpg" alt="" />
+          <img src="../assets/jardineria3.jpg" alt="" />
         </div>
 
         <div class="text">

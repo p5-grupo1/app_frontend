@@ -1,6 +1,6 @@
 <template>
   <div class="sobre">
-    <img src="../src/assets/undraw_hello_re_3evm_1.png" alt="" />
+    <img src="../assets/undraw_hello_re_3evm_1.png" alt="" />
 
     <h1>Información acerca de lo creadores</h1>
 
@@ -18,7 +18,7 @@
     </p>
   </div>
   <div class="sobre1">
-    <img src="../src/assets/undraw_web_shopping_re_owap_1.png" alt="" />
+    <img src="../assets/undraw_web_shopping_re_owap_1.png" alt="" />
 
     <h1>Iniciativa del proyecto</h1>
 
