@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "Services",
+  name: "SignUp",
 
   data: function () {},
 
