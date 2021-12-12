@@ -3,10 +3,10 @@
         <h1>Información de la cuenta</h1>
 
         <div id="usr_profile" class="usr_profile">
-            <img src="../src/assets/user.png"/>
+            <img src="../assets/user.png"/>
             <h4>Nombre de usuario</h4>
             <h5>Rol de usuario</h5>
-            <img src="../src/assets/edit.png"/>
+            <img src="../assets/edit.png"/>
         </div>
 
         <h3>POSTS CREADOS</h3>
@@ -15,8 +15,8 @@
             <h4>Título del post</h4>
             <h5>Valor del servicio</h5>
             <h6>Descripción</h6>
-            <img src="../src/assets/delete.png" alt="Eliminar Post">
-            <img src="../src/assets/edit.png" alt="Editar Post">
+            <img src="../assets/delete.png" alt="Eliminar Post">
+            <img src="../assets/edit.png" alt="Editar Post">
         </div>
         <div id="addpost" class="addpost">
             <!-- <img src="addpost" alt="Agregar Post"> -->
@@ -28,7 +28,7 @@
             <h4>Título</h4>
             <h5>Ciudad</h5>
             <h6>Fecha</h6>
-            <img src="../src/assets/delete.png" alt="Eliminar servicio">
+            <img src="../assets/delete.png" alt="Eliminar servicio">
         </div>
     </div>
 </template>

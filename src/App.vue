@@ -7,12 +7,22 @@
       <div id="right-header" class="right-header">
         <nav>
           <button v-on:click="loadHome">Home</button>
-          <button>Servicios</button>
-          <button>Perfil</button>
-          <button>About</button>
+          <button v-on:click="loadServicios">Servicios</button>
+          <button v-on:click="loadPerfil">Perfil</button>
+          <button v-on:click="loadAbout">About</button>
+          <button v-on:click="loadLogin">Iniciar sesión</button>
+          <button v-on:click="loadSignup">Registrarse</button>
         </nav>
       </div>
     </div>
+
+
+
+    <router-view></router-view>
+
+      <div id="footer" class="footer">
+    <h2>Universidad Nacional | Misión TIC 2021 | Ciclo 4 - Desarrollo Web | P5G1 </h2>
+  </div>
   </div>
 </template> 
  
@@ -20,12 +30,36 @@
 export default {
   name: "App",
 
-  data: function () {},
+  data: function () {
+    return {
+      renderComponent: true,
+    };
+  },
 
   methods: {
-    loadHome: function(){
-        this.$router.push({name: "home"});
-      },
+    loadHome: function () {
+      this.$router.push({ name: "home" });
+    },
+
+    loadServicios: function () {
+      this.$router.push({ name: "services" });
+    },
+
+    loadPerfil: function () {
+      this.$router.push({ name: "perfil" });
+    },
+
+    loadAbout: function () {
+      this.$router.push({ name: "about" });
+    },
+
+    loadSignup: function () {
+      this.$router.push({ name: "signUp" });
+    },
+
+    loadLogin: function () {
+      this.$router.push({ name: "logIn" });
+    },
   },
 
   created: function () {},
@@ -52,7 +86,7 @@ body {
 
 .left-header {
   height: 10vh;
-  width: 30%;
+  width: 40%;
   line-height: 70px;
   font-family: "Alice", "Times New Roman", Times, serif;
   color: #3a3b28;
@@ -73,12 +107,24 @@ body {
   font-weight: bold;
   border-radius: 5px;
   padding: 7px 30px;
-  margin-right: 10px
-  }
+  margin-right: 10px;
+}
 
 .header nav button:hover {
   color: #ede6dc;
   background: #3a3b28;
   border: 1px solid #3a3b28;
+}
+
+.footer{
+  background-color: #ede6dc;
+  height: 10vh;
+  width: 100%;
+  line-height: 70px;
+  font-family: "Raleway", "Arial", sans-serif;
+  color: #3a3b28;
+  text-align: center;
+  font-size: 75%;
+
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="imagen">
-    <img src="../src/assets/Group_2.png" alt="" />
+    <img src="../assets/Group_2.png" alt="" />
   </div>
 
   <div class="Registro">
@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "Services",
+  name: "SignUp",
 
   data: function () {},
 
