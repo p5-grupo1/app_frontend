@@ -1,22 +1,41 @@
 <template>
-<div class="sobre">
-		<img src="../assets/undraw_playing_fetch_cm19_1.png" alt="">
+<div class="containerhome">
+  <div class="homesobre">
+    <img src="../assets/undraw_playing_fetch_cm19_1.png" alt="">
 
-	<h1>Información acerca de la pagina </h1>
+    <h1>Información acerca de la pagina </h1>
 
-	<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam inventore similique suscipit corrupti, culpa, quasi commodi laboriosam sed nulla quos aliquid tempore exercitationem eum adipisci est accusamus, vero odit magni! Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio neque enim omnis nihil cum id animi eum laudantium aliquid. Voluptates nobis minima quaerat accusamus sed commodi quam doloremque nihil obcaecati.
-	Sequi maxime, natus ipsam illo cupiditate consectetur in obcaecati. Porro impedit, hic ipsum, vitae ut maxime est exercitationem rerum beatae doloremque enim magnam aliquam sapiente, voluptatum debitis unde numquam fugiat. </p>
-	</div>
-	<div class="img">
-		<img src="../assets/undraw_flowers_vx06_1.png" alt="">
-	</div>
-	<div class="sobre1">
+    <p>Después de realizar un análisis a los sectores de trabajo
+      que menos implementan herramientas tecnológicas,
+      decidimos apoyar a jardineros y paisajistas para que
+      estos pudieran compartir sus trabajos y servicios a la
+      comunidad de manera fácil y efectiva. <br>
+      Nuestra aplicación esta enfocada en todo tipo de
+      publico amante a la naturaleza, desde las personas
+      que tienen su pequeños jardines, hasta las grandes
+      comunidades que tienen cientos de kilómetros en
+      áreas verdes que deseen que están luzcan de manera
+      increíble.
+      También a aquellas personas que trabajen en esta
+      área, desde aquellos que hacen pequeños e
+      impecables trabajos de jardinería, hasta a aquellos
+      que realizan obras de arte en áreas extensas.</p>
+  </div>
+    
+  <div class="homesobre1">
+    <img src="../assets/undraw_flowers_vx06_1.png" alt="">
 
-	<h1>Objetivos de la pagina</h1>
+    <h1>Objetivos de la pagina</h1>
 
-	<p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta, ut? Consectetur nemo veniam, ab voluptatum dolores dolorum, necessitatibus nam tenetur molestiae cupiditate amet aliquam totam consequatur accusantium ea, ex porro. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quisquam placeat obcaecati aperiam eaque ad consequuntur, adipisci labore est facilis cum, repellat, provident enim reprehenderit necessitatibus veniam laboriosam repellendus laborum.
-	Impedit tempora, laudantium veritatis nam libero nisi animi laboriosam doloribus. Accusamus atque, nemo vero molestiae odit velit unde consequatur blanditiis omnis sed harum facilis id perspiciatis possimus cupiditate repellat, dolorem!</p>
-	</div>
+    <p> Lograr que toda la comunidad de jardineros y paisajistas del país, puedan
+        ofrecer sus servicios de manera rápida y eficiente con la ayuda de las herramientas
+        tecnológicas. Además de permitir a clientes amantes a la jardinería encontrar personas
+        capacitadas para realizar sus labores de jardinería y paisajismo. De acuerdo a sus
+        preferencias y necesidades. 
+    </p>
+  </div>
+</div>
+
 </template>
 
 <script>
@@ -25,35 +44,83 @@ export default {
 
   data: function () {},
 
-  methods: {},
+  methods: {
+
+      loadPost: function () {
+      this.$router.push({ name: "createPost" });
+    }
+  },
 
   created: function () {},
 };
 </script>
 
 <style>
-.sobre h1{
-  text-align: left;
-  padding-left: 40px;
+.containerhome{
+  margin-bottom: 40px;
 }
-.sobre p{
-  text-align: left;
-   padding: 40px;
+.homesobre {
+  height: 285px;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px; 
+  margin-bottom: 10px;
 }
-.sobre img{
+
+.homesobre h1 {
+  font-size: 35px;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 20px;
+  margin: 0px;
+}
+
+.homesobre p{
+  font-size: 22px;
+  text-align: justify;
+  padding: 25px;
+  margin: 0;
+}
+
+.homesobre img{
+  float: left;
+  padding: 60px;
+  width: 450px;
+  margin-right: 20px;
+}
+
+/* other */
+
+.homesobre1 {
+  height: 300px;
+  padding-top: 20px ;
+  margin-top: 150px;
+  margin-left: 25px;
+  margin-right: 25px;  
+  margin-bottom: 20px;  
+}
+
+.homesobre1 h1 {
+  width: 50%;
+  font-size: 35px;
+  text-align: left;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.homesobre1 p {
+  font-size: 22px;
+  text-align: justify;
+  padding: 25px;
+  margin: 0;
+}
+
+.homesobre1 img{
+  margin: 0;
   float: right;
-  padding: 50px;
+  width: 480px;
+  height: 250px;
+  margin-left: 50px;
 }
-.sobre1 h1{
-  text-align: left;
-  padding-right: 40px;
-}
-.sobre1 p{
-  text-align: left;
-  padding: 30px;
-}
-.img img{
-  float: right;
-  padding: 100px;
-}
+
 </style>

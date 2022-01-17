@@ -5,7 +5,26 @@
         <div id="usr_profile" class="usr_profile">
             <img src="../assets/user.png"/>
             <h4>Nombre de usuario</h4>
-            <h5>Rol de usuario</h5>
+            <label>{{userDetailById.nombre}}</label>
+
+            <h4>Username: </h4>
+            <label>{{userDetailById.username}}</label>
+
+            <h4>Email: </h4>
+            <label>{{userDetailById.email}}</label>
+            
+           <h4>Rol de usuarioHola: </h4>
+            <label>{{rol}}</label>
+
+            <h4>Descripcion: </h4>
+            <label>{{userDetailById.descripcion}}</label>
+
+            <h4>Ciudad: </h4>
+            <label>{{userDetailById.ciudad}}</label>
+
+            <h4>Telefono: </h4>
+            <label>{{userDetailById.telefono}}</label>
+
             <img src="../assets/edit.png"/>
         </div>
 
@@ -34,14 +53,53 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
+import jwt_decode from 'jwt-decode';
 export default {
   name: "GardenerProfile",
 
-  data: function () {},
+  data: function (){
+      return {
+      userId: jwt_decode(localStorage.getItem("tokenRefresh")).user_id,
+      userDetailById: {
+        username: "",
+        nombre: "",
+        email: "",
+        rol_jardinero: null,
+        rol: "",
+        descripcion: "",
+        ciudad: "",
+        telefono: ""
+      }
+    }
+  },
+  apollo: {
+  userDetailById : {
+    query: gql`
+      query Query($userId: Int!){
+        userDetailById(userId: $userId){
+          username
+          nombre
+          email
+          rol_jardinero
+          descripcion
+          ciudad
+          telefono
+        }
+      }
+      `,
+      variables(){
+        return {
+          userId: this.userId,
+        }
+      }
+    }
+  },
 
   methods: {},
 
-  created: function () {},
+  created: function(){
+  },
 };
 </script>
 

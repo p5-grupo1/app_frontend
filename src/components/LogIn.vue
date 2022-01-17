@@ -1,77 +1,132 @@
 <template>
-  <div class="imagen">
-    <img src="../assets/undraw_environment_iaus_1.png" alt="" />
-  </div>
+<div class="container">
+    <img id="imagemain" src="../assets/undraw_environment_iaus_1.png" alt="" />
 
   <div class="login">
-    <form action="">
+    <form v-on:submit.prevent="processLogInUser" method="POST">
       <h2>Iniciar sesión</h2>
       <label class="inisecion" for="nombreusuario">Nombre de usuario</label>
-      <input class="inisecion" type="text" placeholder="Nombre de usuario" />
-
+      <input class="inisecion" v-model="user.username" type="text" placeholder="Nombre de usuario" required />
       <label class="inisecion" for="contraseña">Contraseña</label>
-      <input class="inisecion" type="password" placeholder="Contraseña" />
-
+      <input class="inisecion" v-model="user.password" type="password" placeholder="Contraseña" required />
       <input class="boton" type="submit" value="Ingresar" />
     </form>
   </div>
+</div>
+  
 </template>
 
 <script>
+import gql from 'graphql-tag';
 export default {
   name: "Login",
 
-  data: function () {},
+  data: function (){
+    return {
+      user: {
+        username:"",
+        password:""
+      }
+    }
+  },
 
-  methods: {},
+  methods: {
+    processLogInUser: async function(){
+      await this.$apollo.mutate(
+        {
+          mutation: gql`
+            mutation LogIn($credentials: CredentialsInput!){
+              logIn(credentials: $credentials){
+                refresh
+                access
+              }
+            }
+          `,
+          variables:{
+            credentials: this.user,
+          }
+        }
+      )
+      .then((result) => {
+          let dataLogin = {
+            username      : this.user.username,
+            пароль        : this.user.password,
+            tokenRefresh  : result.data.logIn.refresh,
+            tokenAccess   : result.data.logIn.access,
+          };
+          this.$emit("completedLogIn", dataLogin);
+      })
+      .catch((error) => {
+        console.log(error);
+        this.$swal({
+          title: 'Credenciales Incorrectas',
+          icon: 'error'
+        })
+      }); 
+    }
+  },
 
   created: function () {},
 };
 </script>
 
 <style>
-.imagen img {
-  float: left;
-  padding: 30px 50px 0 100px;
-  width: 30%;
+
+.container {
+  margin: 15px;
+  padding: 15px;
+  display: flex;
 }
 
-.login {
-  width: 400px;
-  background: white;
-  padding: 30px;
-  padding-left: 800px;
-  margin-top: 80px;
-  margin-bottom: 250px;
-  font-family: calibri;
-  color: black;
+#imagemain{
+  margin-left: 60px;
+  margin-right: 120px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  height: 450px;
+  width: 450px;
 }
 
 .login h2 {
-  margin: 0;
+  width: 85%;
+  margin-top: 60px;
   text-align: center;
-  height: 40px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid;
-  font-size: 20px;
+  height: 50px;
+  margin-bottom: 35px;
+  font-size: 30px;
 }
 
 .inisecion {
-  width: 80%;
+  width: 85%;
   margin-bottom: 15px;
-  padding: 11px 10px;
+  margin-top: 8px;
+  padding: 15px 10px;
   background: white;
-  font-size: 14 px;
+  font-size: 18px;
   font-weight: bold;
   border: none;
   border-bottom: 1px solid black;
+
 }
+
+.login input{
+  margin-bottom: 30px;
+}
+
 .boton {
-  width: 100%;
-  height: 40px;
+  width: 40%;
+  height: 35px;
+  margin-left: 150px;
   background: #ede6dc;
-  border-radius: 10px;
+  border-radius: 7px;
   color: black;
   margin-bottom: 19px;
+  font-size: 20px;
+  font-style: italic;
 }
+
+.boton:hover{
+  background: #93b677;
+}
+
 </style>

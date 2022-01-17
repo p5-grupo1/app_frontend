@@ -6,23 +6,31 @@
       </div>
       <div id="right-header" class="right-header">
         <nav>
-          <button v-on:click="loadHome">Home</button>
-          <button v-on:click="loadServicios">Servicios</button>
-          <button v-on:click="loadPerfil">Perfil</button>
-          <button v-on:click="loadAbout">About</button>
-          <button v-on:click="loadLogin">Iniciar sesión</button>
-          <button v-on:click="loadSignup">Registrarse</button>
+          <button v-if="isAuth" v-on:click="loadHome">Home</button>
+          <button v-if="isAuth" v-on:click="loadServicios">Servicios</button>
+          <button v-if="isAuth" v-on:click="loadPerfil">Perfil</button>
+         
+          <button v-if="isAuth" v-on:click="loadAbout">About</button>
+          <button v-if="isAuth" v-on:click="logOut">Exit</button>
+          
+          <button v-if="!isAuth" v-on:click="loadLogin">Iniciar sesión</button>
+          <button v-if="!isAuth" v-on:click="loadSignup">Registrarse</button>
         </nav>
       </div>
     </div>
 
-
-
-    <router-view></router-view>
+  <div class="main-component">
+    <router-view
+      v-on:completedLogIn="completedLogIn"
+      v-on:completedSignUp="completedSignUp"
+      v-on:postRead="postRead"
+      >  
+    </router-view>
+    </div>
 
       <div id="footer" class="footer">
-    <h2>Universidad Nacional | Misión TIC 2021 | Ciclo 4 - Desarrollo Web | P5G1 </h2>
-  </div>
+        <h2>Universidad Nacional | Misión TIC 2021 | Ciclo 4 - Desarrollo Web | P5G1 </h2>
+      </div>
   </div>
 </template> 
  
@@ -30,13 +38,18 @@
 export default {
   name: "App",
 
-  data: function () {
-    return {
-      renderComponent: true,
-    };
+
+  computed: {
+    isAuth: {
+      get: function(){
+        return this.$route.meta.requiresAuth;
+      },
+      set: function(){}
+    }
   },
 
   methods: {
+
     loadHome: function () {
       this.$router.push({ name: "home" });
     },
@@ -46,7 +59,7 @@ export default {
     },
 
     loadPerfil: function () {
-      this.$router.push({ name: "perfil" });
+      this.$router.push({ name: "clientProfile" });
     },
 
     loadAbout: function () {
@@ -60,15 +73,59 @@ export default {
     loadLogin: function () {
       this.$router.push({ name: "logIn" });
     },
+
+    completedLogIn: function(data){
+      localStorage.setItem('username', data.username);
+      localStorage.setItem('пароль', data.пароль);
+      localStorage.setItem('tokenRefresh', data.tokenRefresh);
+      localStorage.setItem('tokenAccess', data.tokenAccess);
+      this.$swal({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        icon: 'success',
+        title: 'Autenticacion Exitosa',
+      })
+      this.loadHome();
+    },
+
+    completedSignUp: function(data){
+      this.$swal({
+          title: 'Registro Exitoso',
+          icon: 'success'
+        })
+      this.completedLogIn(data);
+    },
+
+    logOut: function(){
+      localStorage.clear();
+      this.$swal({
+          title: 'Sesion Terminada',
+          icon: 'success'
+        })
+      this.loadLogin();
+    },
+
   },
 
-  created: function () {},
-};
+  created: function () {
+  }
+}
+
+
 </script> 
  
 <style>
+
+html{
+  min-height: 100%;
+  position: relative;
+}
 body {
-  margin: 0 0 0 0;
+  margin: 0;
+  margin-bottom: 40px;
 }
 
 .header {
@@ -117,14 +174,15 @@ body {
 }
 
 .footer{
-  background-color: #ede6dc;
-  height: 10vh;
-  width: 100%;
-  line-height: 70px;
-  font-family: "Raleway", "Arial", sans-serif;
-  color: #3a3b28;
-  text-align: center;
-  font-size: 75%;
-
+font-family: "Raleway", "Arial", sans-serif;
+color: #3a3b28;
+text-align: center;
+font-size: 85%;
+background-color: #ede6dc;
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 60px;
 }
+
 </style>

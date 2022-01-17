@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="imagen">
   	<img src="../assets/undraw_environment_iaus_2.png" alt="">
   </div>
@@ -16,6 +17,7 @@
 
   	<input class="publicarser" type="submit" value="Publicar">
   </div>
+</div>
 </template>
 
 <script>

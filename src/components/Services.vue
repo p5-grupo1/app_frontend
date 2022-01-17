@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="buscar">
     <input type="buscar" placeholder="buscar" />
     <input class="bus" type="submit" value="Buscar" />
@@ -56,9 +57,14 @@
           <p>7.500 m2</p>
           <p>Morbi vestibulum elit nunc etiam</p>
         </div>
+
+        
+
+        
       </div>
     </div>
   </section>
+  </div>
 </template>
 
 <script>
@@ -74,25 +80,25 @@ export default {
 </script>
 
 <style>
-section {
-  background: white;
-  width: 100%;
-  display: flex;
-}
+
 
 .principal {
   display: flex;
   padding-left: 900px;
+  background-color: aquamarine;
 }
 .buscar {
   margin: 10px;
   padding: 20px;
+  background-color: red;
 }
 
 .imagen img {
   width: 30%;
   margin: 0px;
+  background-color: blue;
 }
+
 .text {
   padding-right: 80px;
   text-align: left;
@@ -100,17 +106,23 @@ section {
 
 .seleccion {
   padding: 10px;
+  background-color: blue;;
 }
 
 .conPrincipal {
-  display: flex;
-  margin: 20px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 100px;
+  background-color: blue;;
 }
 
 .col {
-  display: flex;
-  background: #ede6dc;
-  margin: 50px;
+  float: left;
+  background: #7c551e;
+  width: 500px;
+  height: 500px;
+  margin: 20px;
   font-family: Alice;
   align-items: center;
 }
