@@ -8,10 +8,8 @@ import LogIn                                  from "./components/LogIn.vue";
 import Services                               from "./components/Services.vue";
 import About                                  from "./components/About.vue";
 import ClientProfile                          from "./components/ClientProfile.vue";
-import GardenerProfile                        from "./components/GardenerProfile.vue";
-import CreatePost                             from "./components/CreatePost.vue";
-import EditPost                               from "./components/EditPost.vue";
 import Post                                   from "./components/Post.vue";
+import personalPost                           from "./components/personalPost.vue";
 
 const routes = [
 
@@ -70,24 +68,9 @@ const routes = [
   },
 
   {
-    path: "/gardenerprofile",
-    name: "gardenerProfile",
-    component: GardenerProfile,
-    meta: {
-      requiresAuth: true,
-    }
-  },
-
-  /* {
-    path: "/createpost",
-    name: "createPost",
-    component: CreatePost,
-  }, */
-
-  {
-    path: "/editpost",
-    name: "editPost",
-    component: EditPost,
+    path: "/personalPosts",
+    name: "PersonalPosts",
+    component: personalPost,
     meta: {
       requiresAuth: true,
     }

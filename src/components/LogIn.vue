@@ -1,15 +1,25 @@
 <template>
-<div class="container">
-    <img id="imagemain" src="../assets/undraw_environment_iaus_1.png" alt="" />
+<div class="containerLogin">
+  <div class="imgLog">
+    <img src="../assets/undraw_environment_iaus_1.png" alt="" />
+  </div>
 
   <div class="login">
     <form v-on:submit.prevent="processLogInUser" method="POST">
-      <h2>Iniciar sesión</h2>
-      <label class="inisecion" for="nombreusuario">Nombre de usuario</label>
-      <input class="inisecion" v-model="user.username" type="text" placeholder="Nombre de usuario" required />
-      <label class="inisecion" for="contraseña">Contraseña</label>
-      <input class="inisecion" v-model="user.password" type="password" placeholder="Contraseña" required />
-      <input class="boton" type="submit" value="Ingresar" />
+      <div>
+        <h2>Iniciar sesión</h2>
+      </div>
+      <div class="inisecion1">
+        <label class="inisecion" for="nombreusuario">Nombre de usuario</label>
+        <input class="inisecion" v-model="user.username" type="text" placeholder="Nombre de usuario" required />
+      </div>
+      <div class="inisecion1">
+        <label class="inisecion" for="contraseña">Contraseña</label>
+        <input class="inisecion" v-model="user.password" type="password" placeholder="Contraseña" required />
+      </div>
+      <div class="botoncontain">
+        <input class="boton" type="submit" value="Ingresar" />
+      </div>
     </form>
   </div>
 </div>
@@ -72,61 +82,78 @@ export default {
 
 <style>
 
-.container {
-  margin: 15px;
-  padding: 15px;
-  display: flex;
+.containerLogin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+  margin: 2em;
 }
 
-#imagemain{
-  margin-left: 60px;
-  margin-right: 120px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  height: 450px;
-  width: 450px;
+.imgLog{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto 0 auto 0;
+}
+
+.imgLog img {
+  max-width: 110%;
+}
+
+.login {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 4em;
 }
 
 .login h2 {
-  width: 85%;
-  margin-top: 60px;
   text-align: center;
-  height: 50px;
-  margin-bottom: 35px;
   font-size: 30px;
+  margin: 1.5em auto 2em auto;
 }
 
-.inisecion {
-  width: 85%;
-  margin-bottom: 15px;
-  margin-top: 8px;
-  padding: 15px 10px;
-  background: white;
-  font-size: 18px;
+.inisecion1{
+  font-family: Arial, Helvetica, sans-serif;
+ /*  margin: auto auto 2em auto; */
+  margin: 2.5em;
+}
+
+.inisecion1 label{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 95%;
+  font-size: 20px;
   font-weight: bold;
+}
+
+
+.inisecion1 input{
+  font-family: "Raleway", "Arial", sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  padding: 0.3em;
+  margin-top: 0.5em;
+  width: 95%;
+  height: 1.2em;
+  font-size: 18px;
   border: none;
   border-bottom: 1px solid black;
-
 }
 
-.login input{
-  margin-bottom: 30px;
+/* boton */
+
+.botoncontain{
+  display: flex;
+  justify-content: center;
 }
 
 .boton {
-  width: 40%;
-  height: 35px;
-  margin-left: 150px;
   background: #ede6dc;
-  border-radius: 7px;
+  border-radius: 0.5em;
   color: black;
-  margin-bottom: 19px;
-  font-size: 20px;
-  font-style: italic;
+  font-size: 22px;
+  padding: 0.2em;
 }
 
 .boton:hover{
   background: #93b677;
-}
+} 
 
 </style>

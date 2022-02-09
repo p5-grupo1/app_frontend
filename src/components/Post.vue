@@ -1,53 +1,55 @@
 <template>
 <div class="containerpost">
-  <div class="descripcion">
-    <div class="infopost">
-		<img v-bind:src="postById.imagen" alt="Image referent post">
+  <div class="descripcionpost">
+    <div class="imageinfo">
+      <div class="imagecontainerpost">
+        <img v-bind:src="postById.imagen" alt="Image referent post">
+      </div>
 
-		
-    <h3>Jardinero</h3>
-    <label>{{postById.username}}</label>
-    
-    <h3>Descripcion Servicio</h3>
-    <p>{{postById.descripcionServicio}}</p>
+      <div class="infocontent">
+        <h3>Jardinero</h3>
+        <label>{{postById.username}}</label>
+        
+        <h3>Descripcion Servicio</h3>
+        <p>{{postById.descripcionServicio}}</p>
 
-		<h3>Area</h3>
-    <label>{{postById.area}}</label>
+        <h3>Area</h3>
+        <label>{{postById.area}}</label>
 
-		<h3>Ciudad</h3>
-    <label>{{postById.ciudad}}</label>
+        <h3>Ciudad</h3>
+        <label>{{postById.ciudad}}</label>
 
-    <h3>Precio</h3>
-    <label>{{postById.precio}} $</label>
-    
-
-    <h3>Fecha Publicacion</h3>
-    <label>{{(new Date(postById.fechaPublicacion)).toLocaleString("es-ES", {timeZone:"America/Bogota"}).split(" ")[0]}} : 
-          <i>{{(new Date(postById.fechaPublicacion)).toLocaleString("es-ES", {timeZone:"America/Bogota"}).split(" ")[1]}}</i></label>
-    <br><br><br>
-    
+        <h3>Precio</h3>
+        <label>{{(new Intl.NumberFormat('en-US').format(postById.precio))}} $</label>
+        
+        <h3>Fecha Publicacion</h3>
+        <label>{{(new Date(postById.fechaPublicacion)).toLocaleString("es-ES", {timeZone:"America/Bogota"}).split(",")[0]}} : 
+              <i>{{(new Date(postById.fechaPublicacion)).toLocaleString("es-ES", {timeZone:"America/Bogota"}).split(", ")[1]}}</i></label>
+      </div>
+    </div>
 
     <div id="botonclass">
-      <button class="button-18" role="button">Reservar</button>
+      <button class="button-18" role="button" v-if="rol == 'false'" v-on:click="reservar()">Reservar</button>
       <button class="button-19" role="button" v-on:click="back()">Volver</button> 
     </div>
-    </div>
+  </div>
 
     <!-- informacion del Jardinero -->
   <div id="infouser">
-    <h4>Informacion Del Jardinero</h4>
-    <table id="tableinfo">
-      <tr>
-      <div v-for="infouser in userByUsername" :key="infouser.username">
-      <td><b>Nombre del Jardinero:  </b>{{infouser.nombre}}</td>
-      <td><b>Email:  </b>{{infouser.email}}</td>
-      <td><b>Ciudad Residencia:  </b>{{infouser.ciudad}}</td>
-      <td><b>Telefono:  </b>{{infouser.telefono}}</td>
-      <td><b>Descripcion:  </b>{{infouser.descripcion}}</td>
-      <td><b>Ver Todos Sus Servicios:</b><i class="material-icons" style="font-size:40px">visibility</i></td>
-      </div>
-      </tr>
-    </table>
+    <div class="containertitle">
+      <h4>Informacion Del Jardinero</h4>
+    </div>
+    <div class="containertable">
+      <table class="tableinfo">
+        <tr v-for="infouser in userByUsername" :key="infouser.username">
+          <td><b>Nombre del Jardinero:  </b>{{infouser.nombre}}</td>
+          <td><b>Email:  </b>{{infouser.email}}</td>
+          <td><b>Ciudad Residencia:  </b>{{infouser.ciudad}}</td>
+          <td><b>Telefono:  </b>{{infouser.telefono}}</td>
+          <td><b>Descripcion:  </b>{{infouser.descripcion}}</td>
+          <td><b>Ver Todos Sus Servicios:</b><i class="material-icons" style="font-size:40px" v-on:click="loadPersonalPosts(postById.username)">visibility</i></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
@@ -65,6 +67,7 @@ export default {
       usernamelocal: localStorage.getItem("username") || "none",
       postLocal: localStorage.getItem("idPostLocal") || "none",
       jardinLocal: localStorage.getItem("jardinName") || "none",
+      rol: localStorage.getItem("roluser") || "none",
 
       PostById: {
         area: "",
@@ -126,13 +129,35 @@ export default {
       this.$router.push({ name: "services" });
     },
 
-    /* deletereserva: async function(){
+    loadPersonalPosts: function (user){
+      localStorage.setItem('postu', user);
+      this.$router.push({ name: "PersonalPosts" });
+    },
+
+    reservar: async function(){ 
+      
       await this.$apollo.mutate(
         {
-          
-        }
-      )
-    }, */
+          mutation: gql`
+            mutation Mutation($reservas: ReservasInput!) {
+              ReservasCreate(reservas: $reservas)
+            }
+          `,
+          variables:{
+            reservas: {
+              "cuentaJardinero": this.jardinLocal,
+              "idPublicacion": this.postLocal,
+              "cuentaCliente": this.usernamelocal,
+            }
+          }
+        })
+        .then((result) => {
+          this.$swal("Reservado", "Servicio Reservado", "success");
+        })
+        .catch((error) => {
+          return;
+        })
+    },
 
   created: function(){
     this.$apollo.queries.PostById.refetch();
@@ -143,109 +168,100 @@ export default {
 </script>
 
 
-
 <style>
 
-
-.descripcion {
-  padding: 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 80px;
-  margin-right: 80px;
+.containerpost{
+  display: grid;
+  grid-template-rows: 1fr; 
+  gap: 3em;
+  margin: 2em;
 }
 
-.infopost{
-  height: 555px;
-  padding: 10px;
-  margin-bottom: 15px;
+.descripcionpost{
+  display: grid;
+  grid-template-rows: repeat(2,auto);
   border-radius: 10px;
-  background-image: radial-gradient(circle at 50% -20.71%, #fff964 0, #f5fa62 7.14%, #e0fb61 14.29%, #c9fb63 21.43%, #b0fa66 28.57%, #93f86a 35.71%, #70f570 42.86%, #3cf278 50%, #00ee81 57.14%, #00ea8d 64.29%, #00e79a 71.43%, #00e3a9 78.57%, #00e0b9 85.71%, #00ddca 92.86%, #00dadb 100%);
   border: 2px solid black;
+  font-size: 25px;
+}
+
+.imageinfo{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 0.8em;
 }
 
 
-.infopost img{
+.imagecontainerpost{
+  display:block;
+  margin: auto;
+  padding: 1em;
+}
+
+.imagecontainerpost img{
   width: 600px;
   height: 480px;
-  float: left;
-  border-radius: 8px;
-  margin-right: 40px;
+  max-width: 100%;
+  border-radius: 1em;
 }
 
-.infopost  h3{
-  text-align: left;
+.infocontent{
+  padding: 1em;
+  margin: 0px;
+}
+
+.infocontent h3{
   font-size: 25px;
   margin: 0px;
-  margin-top: 20px;
-  margin-bottom: 8px;
-
-
+  margin-bottom: 0.2em;
+  margin-top: 0.8em;
 }
-.infopost  p{
+
+.infocontent label{
   text-align: justify;
-  font-size: 20px;
+  font-size: 22px;
   margin: 0px;
-
+  margin-top: 1em;
 }
 
-.infopost  label{
-  font-size: 20px;
-  text-align: justify;  
+.infocontent p{
+  text-align: justify;
+  font-size: 22px;
   margin: 0px;
-}
-
+} 
 
 #infouser{
-  margin-bottom: 15px;
+  display: grid;
+  grid-template-rows: repeat(2,auto);
+  margin-bottom: 3em;
   border-radius: 10px;
-  background-image: radial-gradient(circle at 50% -20.71%, #fff964 0, #f5fa62 7.14%, #e0fb61 14.29%, #c9fb63 21.43%, #b0fa66 28.57%, #93f86a 35.71%, #70f570 42.86%, #3cf278 50%, #00ee81 57.14%, #00ea8d 64.29%, #00e79a 71.43%, #00e3a9 78.57%, #00e0b9 85.71%, #00ddca 92.86%, #00dadb 100%);
   border: 2px solid black;
 }
 
-#infouser h4{
-  margin: 0px;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  font-size: 30px;
-  font-style: italic;
-}
-#infouser i{
-  cursor: pointer;
-  margin: 0;
-  float: right;
+.tableinfo{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1em;
 }
 
-#tableinfo div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin-right: 270px;
-  margin-left: 270px; */
-  width: 100%;
-  font-size: 20px;
+.tableinfo tr{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  font-size: 24px;
   border-radius: 10px;
-  /* float:left; */
-  text-align: center;
 }
 
-#tableinfo td {
-  font-size: 23px;
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
-  float: left;
-}
+.tableinfo td{
+  padding: 0.5em;
+} 
 
 #botonclass{
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: center;
-  width: 100%;
   align-items: center;
   height: 40px;
+  margin: 0.5em auto 0.5em auto;
 }
 
 

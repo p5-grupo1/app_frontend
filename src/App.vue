@@ -2,7 +2,12 @@
   <div id="app" class="app">
     <div id="header" class="header">
       <div id="left-header" class="left-header">
-        <img src="../src/assets/main_logo.svg" />Soluciones Verdes
+        <div>
+          <img src="../src/assets/main_logo.svg"/>
+        </div>
+        <div>
+        <h1>Soluciones Verdes</h1>
+        </div>
       </div>
       <div id="right-header" class="right-header">
         <nav>
@@ -125,30 +130,42 @@ html{
 }
 body {
   margin: 0;
-  margin-bottom: 40px;
+  margin-bottom: 1em;
 }
 
 .header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 10vh;
-  min-height: 50px;
-  background-color: #ede6dc;
-  color: #ede6dc;
-  display: flex;
-  justify-content: space-between;
+  gap: 2em;
   align-items: center;
+  justify-content: space-between;
+  color: #ede6dc;
+  background-color: #ede6dc;
+}
+
+
+.right-header nav{
+  float: right;
+  margin-right: 2em;
+}
+
+.left-header h1{
+  font-family: "Raleway", "Arial", sans-serif;
+  margin: 0px;
+  color: #3a3b28;
+  font-size: 33px;
+  text-align: center;
 }
 
 .left-header {
-  height: 10vh;
-  width: 40%;
-  line-height: 70px;
-  font-family: "Alice", "Times New Roman", Times, serif;
-  color: #3a3b28;
-  font-size: 270%;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.2em;
+  margin-left: 2em;
 }
+
 
 .left-header img {
   margin: 10px;
@@ -161,10 +178,13 @@ body {
   background: #ede6dc;
   border: 1px solid #3a3b28;
   font-family: "Raleway", "Arial", sans-serif;
+  font-size: 15px;
   font-weight: bold;
   border-radius: 5px;
-  padding: 7px 30px;
-  margin-right: 10px;
+  padding: 0.3em;
+  margin: 0.8em;
+  width: 7em;
+  max-width: 80%;
 }
 
 .header nav button:hover {
@@ -174,15 +194,15 @@ body {
 }
 
 .footer{
-font-family: "Raleway", "Arial", sans-serif;
-color: #3a3b28;
-text-align: center;
-font-size: 85%;
-background-color: #ede6dc;
-position: absolute;
-bottom: 0;
-width: 100%;
-height: 60px;
+  display: grid;
+  grid-template-columns: auto;
+  font-family: "Raleway", "Arial", sans-serif;
+  color: #3a3b28;
+  text-align: center;
+  font-size: 85%;
+  background-color: #ede6dc;
+  position: absolute;
+  width: 100%;
 }
 
 </style>

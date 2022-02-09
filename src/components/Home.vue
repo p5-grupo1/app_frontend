@@ -1,8 +1,11 @@
 <template>
 <div class="containerhome">
   <div class="homesobre">
+    <div class="imagehome1">
     <img src="../assets/undraw_playing_fetch_cm19_1.png" alt="">
+    </div>
 
+    <div>
     <h1>Información acerca de la pagina </h1>
 
     <p>Después de realizar un análisis a los sectores de trabajo
@@ -20,11 +23,11 @@
       área, desde aquellos que hacen pequeños e
       impecables trabajos de jardinería, hasta a aquellos
       que realizan obras de arte en áreas extensas.</p>
+      </div>
   </div>
     
   <div class="homesobre1">
-    <img src="../assets/undraw_flowers_vx06_1.png" alt="">
-
+    <div>
     <h1>Objetivos de la pagina</h1>
 
     <p> Lograr que toda la comunidad de jardineros y paisajistas del país, puedan
@@ -33,38 +36,84 @@
         capacitadas para realizar sus labores de jardinería y paisajismo. De acuerdo a sus
         preferencias y necesidades. 
     </p>
+    </div>
+    <div class="imagehome2">
+    <img src="../assets/undraw_flowers_vx06_1.png" alt="">
+    </div>
   </div>
 </div>
 
 </template>
 
 <script>
+import gql from 'graphql-tag';
+import jwt_decode from 'jwt-decode';
+
 export default {
   name: "Home",
+  data: function() {
+    return{
+      userId: jwt_decode(localStorage.getItem("tokenRefresh")).user_id,
+      usernamelocal: localStorage.getItem("username") || "none",
 
-  data: function () {},
-
-  methods: {
-
-      loadPost: function () {
-      this.$router.push({ name: "createPost" });
+      userDetailById: {
+        "rol_jardinero": "",
+      },
     }
   },
+  apollo: {
+  userDetailById : {
+    query: gql`
+      query Query($userId: Int!){
+        userDetailById(userId: $userId){
+          rol_jardinero
+        }
+      }
+      `,
+      variables(){
+        return {
+          userId: this.userId,
+        }
+      }
+  }
+  },
 
-  created: function () {},
+
+  mounted(){
+    let rol = this.userDetailById.rol_jardinero
+      localStorage.setItem('roluser', rol);
+  },
+
+
+
+  created: function() {
+    this.$apollo.queries.userDetailById.refetch();
+  },
 };
 </script>
 
 <style>
-.containerhome{
-  margin-bottom: 40px;
+.containerhome {
+  display: grid;
+  grid-template-rows: 2;
+  gap: 2em;
+  margin: 2em;
 }
+
 .homesobre {
-  height: 285px;
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-right: 25px; 
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 2em;
+}
+
+.homesobre img{
+  max-width: 110%;
+  float: left;
+}
+
+.imagehome1 {
+  display: block;
+  margin: auto 0 auto 0;
 }
 
 .homesobre h1 {
@@ -76,51 +125,41 @@ export default {
 }
 
 .homesobre p{
-  font-size: 22px;
+  font-size: 25px;
   text-align: justify;
-  padding: 25px;
+  padding: 1em;
   margin: 0;
 }
 
-.homesobre img{
-  float: left;
-  padding: 60px;
-  width: 450px;
-  margin-right: 20px;
-}
-
-/* other */
-
 .homesobre1 {
-  height: 300px;
-  padding-top: 20px ;
-  margin-top: 150px;
-  margin-left: 25px;
-  margin-right: 25px;  
-  margin-bottom: 20px;  
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-bottom: 4em;
+  gap: 3em;
 }
 
 .homesobre1 h1 {
-  width: 50%;
   font-size: 35px;
   text-align: left;
   padding-left: 20px;
-  margin: 0;
+  padding-top: 20px;
+  margin: 0px;
 }
 
-.homesobre1 p {
-  font-size: 22px;
+.homesobre1 p{
+  font-size: 25px;
   text-align: justify;
-  padding: 25px;
+  padding: 1em;
   margin: 0;
 }
 
 .homesobre1 img{
-  margin: 0;
+  max-width: 110%;
   float: right;
-  width: 480px;
-  height: 250px;
-  margin-left: 50px;
 }
 
+.imagehome2 {
+  display: block;
+  margin: auto 0 auto 0;
+}
 </style>

@@ -1,32 +1,45 @@
 <template>
-<div class="container">
+<div class="containerSigUp">
+  <div class="imgSign">
     <img id="imagemain1" src="../assets/Group_2.png" alt="plant draw"/>
+  </div>
   <div class="Registro">
     <form v-on:submit.prevent="processSignUp">
+      <div>
       <h2>Registro</h2>
-      <label class="registrarse" for="nombreusuario">Nombre de usuario</label>
-      <input class="registrarse" type="text" placeholder="Escoja un nombre de usuario" required
-        v-model="user.username"/>
-
-      <label class="registrarse" for="contraseña">Contraseña</label>
-      <input class="registrarse" type="password" placeholder="Contraseña" v-model="user.password" required />
-
-      <label class="registrarse" for="nombrecompleto">Nombre completo</label>
-      <input class="registrarse" type="text" placeholder="Nombre y apellidos" v-model="user.nombre" required />
-
-      <label class="registrarse" for="correo">Correo electrónico</label>
-      <input class="registrarse" type="email" placeholder="Dirección de correo electrónico" required 
+      </div>
+      <div class="formsign">
+        <label class="registrarse" for="nombreusuario">Nombre de usuario</label>
+        <input class="registrarse" type="text" placeholder="Escoja un nombre de usuario" required
+          v-model="user.username"/>
+      </div>
+      <div class="formsign">
+        <label class="registrarse" for="contraseña">Contraseña</label>
+        <input class="registrarse" type="password" placeholder="Contraseña" v-model="user.password" required />
+      </div>
+      <div class="formsign"> 
+        <label class="registrarse" for="nombrecompleto">Nombre completo</label>
+        <input class="registrarse" type="text" placeholder="Nombre y apellidos" v-model="user.nombre" required />
+      </div>
+      <div class="formsign">
+        <label class="registrarse" for="correo">Correo electrónico</label>
+        <input class="registrarse" type="email" placeholder="Dirección de correo electrónico" required 
       v-model="user.email"/>
-
-      <p>¿QUÉ DESEA HACER?</p>
-
-      <input class="opcion" type="radio" name="escoger" v-model="user.rol_jardinero" value='true'/>
-      <label class="opcion" for="jardinero">Deseo ofrecer mis servicios como jardinero</label>
-      <br>
-      <input class="opcion" type="radio" name="escoger" v-model="user.rol_jardinero" value='false'/>
-      <label class="opcion" for="jardinero">Deseo ser cliente</label>
-
-      <input class="boton" type="submit" value="Registrarse"/>
+      </div>
+      <div class="formsign">
+        <p>¿QUÉ DESEA HACER?</p>
+      </div>
+      <div class="formsign2">
+        <input class="opcion" type="radio" name="escoger" v-model="user.rol_jardinero" value='true'/>
+        <label class="opcion" for="jardinero">Deseo ofrecer mis servicios como jardinero</label>
+      </div>
+      <div class="formsign2">
+        <input class="opcion" type="radio" name="escoger" v-model="user.rol_jardinero" value='false'/>
+        <label class="opcion" for="jardinero">Deseo ser cliente</label>
+      </div>
+      <div class="botoncontain">
+        <input class="boton1" type="submit" value="Registrarse"/>
+      </div>
     </form>
   </div>
 </div>
@@ -103,61 +116,75 @@ export default {
 </script>
 
 <style>
-
-
-.Registro {
-  margin-bottom: 40px;
-  width: 40%;
-  background: white;
-  font-family: calibri;
-  color: black;
+.containerSigUp{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+  margin: 2em;
 }
 
-.Registro h2 {
-  font-size: 30px;
-  margin: 0;
+.imgSign{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto 0 auto 0;
+}
+
+.imgSign img{
+  max-width: 100%;
+}
+
+.Registro{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 5em;
+}
+
+.Registro h2{
   text-align: center;
-  height: 40px;
-  margin-top: 25px;
-  margin-bottom: 35px;
-  border-bottom: 1px solid;
+  font-size: 30px;
+  margin: 1em;
 }
 
-.registrarse {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 11px 10px;
-  background: white;
-  font-size: 18px;
+.formsign{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto auto 2em auto;
+}
+
+.formsign label{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 95%;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.formsign input{
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.3em;
+  margin-top: 0.2em;
+  width: 95%;
+  height: 1.2em;
+  font-size: 18px;
   border: none;
   border-bottom: 1px solid black;
 }
 
-.Registro p{
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 15px;
+.formsign2{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto auto 1em auto;
+  font-size: 20px;
 }
 
-.opcion {
-  margin: 0;
-  width: 15%;
-  font-size: 18px;
+.boton1 {
+  font-family: sans-serif;
+  background: #ede6dc;
+  border-radius: 0.5em;
+  color: black;
+  font-size: 22px;
+  padding: 0.2em;
 }
 
-#imagemain1{
-  margin-left: 60px;
-  margin-right: 200px;
-  margin-bottom: 10px;
-  margin-top: 100px;
-  height: 400px;
-  width: 400px;
-  
-}
+.boton1:hover{
+  background: #93b677;
+} 
 
-.Registro input{
-  margin-bottom: 30px;
-}
-/* margin-bottom: 40px; */
 </style>
