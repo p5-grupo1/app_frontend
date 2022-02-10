@@ -190,7 +190,7 @@ export default {
 },
 
   mounted(){
-    loadprofile();
+    this.loadprofile();
     this.$apollo.queries.ReservasByClient.refetch();
     this.$apollo.queries.postByUsername.refetch();
     this.$apollo.queries.postByUsername.refetch();
