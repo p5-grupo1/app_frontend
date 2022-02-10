@@ -130,7 +130,7 @@ html{
 }
 body {
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .header {
@@ -194,8 +194,6 @@ body {
 }
 
 .footer{
-  display: grid;
-  grid-template-columns: auto;
   font-family: "Raleway", "Arial", sans-serif;
   color: #3a3b28;
   text-align: center;
@@ -203,6 +201,7 @@ body {
   background-color: #ede6dc;
   position: absolute;
   width: 100%;
+  bottom: 0;
 }
 
 </style>

@@ -98,6 +98,10 @@ export default {
       city: "",
       area: "null",
       key: 0,
+      userDetailById: {
+        "rol_jardinero": "",
+      },
+
     }
   },
 
@@ -180,12 +184,28 @@ export default {
 
         }
       }
+    },
+    userDetailById : {
+    query: gql`
+      query Query($userId: Int!){
+        userDetailById(userId: $userId){
+          rol_jardinero
+        }
+      }
+      `,
+      variables(){
+        return {
+          userId: this.userId,
+        }
+      }
     }
   },
 
 
   mounted(){
     this.$apollo.queries.postByAll.refetch();
+    let rol = this.userDetailById.rol_jardinero
+      localStorage.setItem('roluser', rol);
     },
 
   methods: {
@@ -254,7 +274,7 @@ export default {
 .imgdata1 {
   height: 300px;
   width: 380px;
-  max-width: 100%;
+  max-width: 100%;            
   display:block;
   margin: 0.8em auto 0.2em auto;
   border-radius: 5px;
