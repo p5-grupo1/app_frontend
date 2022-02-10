@@ -28,7 +28,6 @@
     <router-view
       v-on:completedLogIn="completedLogIn"
       v-on:completedSignUp="completedSignUp"
-      v-on:postRead="postRead"
       >  
     </router-view>
     </div>
