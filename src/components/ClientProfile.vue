@@ -190,12 +190,20 @@ export default {
 },
 
   mounted(){
+    loadprofile();
     this.$apollo.queries.ReservasByClient.refetch();
     this.$apollo.queries.postByUsername.refetch();
     this.$apollo.queries.postByUsername.refetch();
+
     },
 
   methods: {
+
+    loadprofile: function(){
+      let rol = this.userDetailById.rol_jardinero
+      localStorage.setItem('roluser', rol);
+    },
+
     loadpost: function(loadpost, jardin){  
       let prueba = loadpost  
       localStorage.setItem('idPostLocal', prueba);

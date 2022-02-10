@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
 import jwt_decode from 'jwt-decode';
 
 export default {
@@ -55,39 +54,11 @@ export default {
     return{
       userId: jwt_decode(localStorage.getItem("tokenRefresh")).user_id,
       usernamelocal: localStorage.getItem("username") || "none",
-
-      userDetailById: {
-        "rol_jardinero": "",
-      },
     }
   },
-  apollo: {
-  userDetailById : {
-    query: gql`
-      query Query($userId: Int!){
-        userDetailById(userId: $userId){
-          rol_jardinero
-        }
-      }
-      `,
-      variables(){
-        return {
-          userId: this.userId,
-        }
-      }
-  }
-  },
-
-
-  mounted(){
-    let rol = this.userDetailById.rol_jardinero
-      localStorage.setItem('roluser', rol);
-  },
-
-
+  
 
   created: function() {
-    this.$apollo.queries.userDetailById.refetch();
   },
 };
 </script>

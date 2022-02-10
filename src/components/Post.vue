@@ -155,6 +155,7 @@ export default {
           this.$swal("Reservado", "Servicio Reservado", "success");
         })
         .catch((error) => {
+          this.$swal("Error", "Su reserva ya ha sido creada anteriormente", "error");
           return;
         })
     },
