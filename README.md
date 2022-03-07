@@ -10,6 +10,6 @@ Podras:
 - Ser un Cliente: Podras buscar trabajos de calidad de jardineria y paisajiso para contratarlos.
 
 https://soluciones-verdes-fe.herokuapp.com/#/login
-usuario Prueba: 
-User:     MisionTic 
-Password: misiontic2022
+- usuario Prueba: 
+- User:     MisionTic 
+- Password: misiontic2022
