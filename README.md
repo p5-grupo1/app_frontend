@@ -1,19 +1,13 @@
-# solucionesverdes_fe
+# Soluciones Verdes
 
-## Project setup
-```
-npm install
-```
+## Project Info
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Proyecto personal de aprendizaje, Frontend hecho con Vuejs.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Web para usuarios amantes a la Jardineria.
+Podras:
+- Ser un Jardinero: Crearas tu perfil y subiras tu trabajo.
+- Ser un Cliente: Podras buscar trabajos de calidad de jardineria y paisajiso para contratarlos.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
